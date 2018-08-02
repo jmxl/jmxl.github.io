@@ -7,20 +7,20 @@
   
   
   
-  <title>MIUI9 安卓7.1 添加高级电源菜单 | 九面相柳的博客</title>
+  <title>MIUI 破解卡米教程 | 九面相柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式">
+  <meta name="description" content="MIUI 破解卡米教程：解决MIUI删除内置应用商店会卡米的问题。">
 <meta name="keywords" content="MIUI,教程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIUI9 安卓7.1 添加高级电源菜单">
-<meta property="og:url" content="https://jmxl.github.io/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/index.html">
+<meta property="og:title" content="MIUI 破解卡米教程">
+<meta property="og:url" content="https://jmxl.github.io/2018/08/02/MIUI-破解卡米教程/index.html">
 <meta property="og:site_name" content="九面相柳的博客">
-<meta property="og:description" content="MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式">
+<meta property="og:description" content="MIUI 破解卡米教程：解决MIUI删除内置应用商店会卡米的问题。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T02:48:32.210Z">
+<meta property="og:updated_time" content="2018-08-02T04:19:58.752Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MIUI9 安卓7.1 添加高级电源菜单">
-<meta name="twitter:description" content="MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式">
+<meta name="twitter:title" content="MIUI 破解卡米教程">
+<meta name="twitter:description" content="MIUI 破解卡米教程：解决MIUI删除内置应用商店会卡米的问题。">
   
     <link rel="alternative" href="/atom.xml" title="九面相柳的博客" type="application/atom+xml">
   
@@ -250,11 +250,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-MIUI9-安卓7-1-添加高级电源菜单" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-MIUI-破解卡米教程" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" class="article-date">
-      <time datetime="2018-07-31T16:02:10.000Z" itemprop="datePublished">2018-08-01</time>
+      <a  href="/2018/08/02/MIUI-破解卡米教程/" class="article-date">
+      <time datetime="2018-08-02T04:08:07.000Z" itemprop="datePublished">2018-08-02</time>
 </a>
 
     </div>
@@ -268,7 +268,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MIUI9 安卓7.1 添加高级电源菜单
+      MIUI 破解卡米教程
     </h1>
   
 
@@ -294,102 +294,235 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong> MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式 </strong> <excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
+        <p><strong> MIUI 破解卡米教程：解决MIUI删除内置应用商店会卡米的问题。 </strong> <excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
 <p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<label style="color:gray">本文来自：<a href="http://en.miui.com/forum.php?mod=viewthread&amp;tid=478019&amp;extra=page%3D2" target="_blank" rel="noopener">MIUI论坛英文版</a>，翻译：九面相柳</label>
-
 <ol>
-<li>反编译 system/framework/services.jar</li>
-<li>打开 com\android\server\policy/MiuiGlobalActions$1.smali</li>
-<li><p>找到</p>
-<blockquote>
-<p>.method public onCommand(Ljava/lang/String;Ljava/lang/&gt; Double;Ljava/lang/String;)V<br>.<br>.end method</p>
+<li>反编译/system/framework/services.jar（需要Decodex化）</li>
+<li>打开smali/com/android/server/pm/PackageManagerService.smali<br>搜索：<blockquote>
+<p>.method static compareSignatures</p>
 </blockquote>
-</li>
-<li><p>将其替换为</p>
 </li>
 </ol>
+<p>将会找到：</p>
+<pre><code>.method static compareSignatures([Landroid/content/pm/Signature;[Landroid/content/pm/Signature;)I
+
+.locals 11
+.param p0, &quot;s1&quot;    # [Landroid/content/pm/Signature;
+.param p1, &quot;s2&quot;    # [Landroid/content/pm/Signature;
+
+.prologue
+const/4 v6, 0x1
+
+const/4 v8, -0x3
+
+const/4 v7, 0x0
+
+.line 3096
+if-nez p0, :cond_1
+
+.line 3097
+if-nez p1, :cond_0
+
+.line 3129
+:goto_0
+return v6
+
+.line 3097
+:cond_0
+const/4 v6, -0x1
+
+goto :goto_0
+
+.line 3102
+:cond_1
+if-nez p1, :cond_2
+
+.line 3103
+const/4 v6, -0x2
+
+goto :goto_0
+
+.line 3106
+:cond_2
+array-length v9, p0
+
+array-length v10, p1
+
+if-eq v9, v10, :cond_3
+
+move v6, v8
+
+.line 3107
+goto :goto_0
+
+.line 3111
+:cond_3
+array-length v9, p0
+
+if-ne v9, v6, :cond_5
+
+.line 3112
+aget-object v6, p0, v7
+
+aget-object v9, p1, v7
+
+invoke-virtual {v6, v9}, Landroid/content/pm/Signature;-&gt;equals(Ljava/lang/Object;)Z
+
+move-result v6
+
+if-eqz v6, :cond_4
+
+move v6, v7
+
+goto :goto_0
+
+:cond_4
+move v6, v8
+
+goto :goto_0
+
+.line 3117
+:cond_5
+new-instance v3, Ljava/util/HashSet;
+
+invoke-direct {v3}, Ljava/util/HashSet;-&gt;&lt;init&gt;()V
+
+.line 3118
+.local v3, &quot;set1&quot;:Ljava/util/HashSet;, &quot;Ljava/util/HashSet&lt;Landroid/content/pm/Signature;&gt;;&quot;
+move-object v0, p0
+
+.local v0, &quot;arr[        DISCUZ_CODE_1        ]quot;:[Landroid/content/pm/Signature;
+array-length v2, v0
+
+.local v2, &quot;len[        DISCUZ_CODE_1        ]quot;:I
+const/4 v1, 0x0
+
+.local v1, &quot;i[        DISCUZ_CODE_1        ]quot;:I
+:goto_1
+if-ge v1, v2, :cond_6
+
+aget-object v5, v0, v1
+
+.line 3119
+.local v5, &quot;sig&quot;:Landroid/content/pm/Signature;
+invoke-virtual {v3, v5}, Ljava/util/HashSet;-&gt;add(Ljava/lang/Object;)Z
+
+.line 3118
+add-int/lit8 v1, v1, 0x1
+
+goto :goto_1
+
+.line 3121
+.end local v5    # &quot;sig&quot;:Landroid/content/pm/Signature;
+:cond_6
+new-instance v4, Ljava/util/HashSet;
+
+invoke-direct {v4}, Ljava/util/HashSet;-&gt;&lt;init&gt;()V
+
+.line 3122
+.local v4, &quot;set2&quot;:Ljava/util/HashSet;, &quot;Ljava/util/HashSet&lt;Landroid/content/pm/Signature;&gt;;&quot;
+move-object v0, p1
+
+array-length v2, v0
+
+const/4 v1, 0x0
+
+:goto_2
+if-ge v1, v2, :cond_7
+
+aget-object v5, v0, v1
+
+.line 3123
+.restart local v5    # &quot;sig&quot;:Landroid/content/pm/Signature;
+invoke-virtual {v4, v5}, Ljava/util/HashSet;-&gt;add(Ljava/lang/Object;)Z
+
+.line 3122
+add-int/lit8 v1, v1, 0x1
+
+goto :goto_2
+
+.line 3126
+.end local v5    # &quot;sig&quot;:Landroid/content/pm/Signature;
+:cond_7
+invoke-virtual {v3, v4}, Ljava/util/HashSet;-&gt;equals(Ljava/lang/Object;)Z
+
+move-result v6
+
+if-eqz v6, :cond_8
+
+move v6, v7
+
+.line 3127
+goto :goto_0
+
+:cond_8
+move v6, v8
+
+.line 3129
+goto :goto_0
+
+.end method
+</code></pre><p>用以下内容替换：</p>
 <blockquote>
-<p> .method public onCommand(Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;)V<br>  .locals 5</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const-string/jumbo v0, “airplane”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_1</p>
-<p>   iget-object v0, p0, Lcom/android/server/policy/MiuiGlobalActions$1;-&gt;this$0:Lcom/android/server/policy/MiuiGlobalActions;</p>
-<p>   const/16 v1, 0x9</p>
-<p>   invoke-static {v0, v1}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap1(Lcom/android/server/policy/MiuiGlobalActions;I)V</p>
-<p>   :cond_0<br>    :goto_0<br>    return-void</p>
-<p>   :cond_1<br>    const-string/jumbo v0, “silent”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_2</p>
-<p>   iget-object v0, p0, Lcom/android/server/policy/MiuiGlobalActions$1;-&gt;this$0:Lcom/android/server/policy/MiuiGlobalActions;</p>
-<p>   const/4 v1, 0x5</p>
-<p>   invoke-static {v0, v1}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap1(Lcom/android/server/policy/MiuiGlobalActions;I)V</p>
-<p>   goto :goto_0</p>
-<p>   :cond_2<br>    const-string/jumbo v0, “reboot”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_3</p>
-<p>   :try_start_0<br>    invoke-static {}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap0()Landroid/os/IPowerManager;</p>
-<p>   move-result-object v0</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const/4 v2, 0x0</p>
-<p>   const/4 v3, 0x0</p>
-<p>   invoke-interface {v0, v1, v2, v3}, Landroid/os/IPowerManager;-&gt;reboot(ZLjava/lang/String;Z)V<br>    :try_end_0<br>    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0</p>
-<p>   goto :goto_0</p>
-<p>   :catch_0<br>    move-exception v0</p>
-<p>   goto :goto_0</p>
-<p>   :cond_3<br>    const-string/jumbo v0, “recovery”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_4</p>
-<p>   :try_start_1<br>    invoke-static {}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap0()Landroid/os/IPowerManager;</p>
-<p>   move-result-object v0</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const-string v2, “recovery”</p>
-<p>   const/4 v3, 0x0</p>
-<p>   invoke-interface {v0, v1, v2, v3}, Landroid/os/IPowerManager;-&gt;reboot(ZLjava/lang/String;Z)V<br>    :try_end_1<br>    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_1</p>
-<p>   goto :goto_0</p>
-<p>   :catch_1<br>    move-exception v0</p>
-<p>   goto :goto_0</p>
-<p>   :cond_4<br>    const-string/jumbo v0, “bootloader”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_5</p>
-<p>   :try_start_2<br>    invoke-static {}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap0()Landroid/os/IPowerManager;</p>
-<p>   move-result-object v0</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const-string v2, “bootloader”</p>
-<p>   const/4 v3, 0x0</p>
-<p>   invoke-interface {v0, v1, v2, v3}, Landroid/os/IPowerManager;-&gt;reboot(ZLjava/lang/String;Z)V<br>    :try_end_2<br>    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_2</p>
-<p>   goto :goto_0</p>
-<p>   :catch_2<br>    move-exception v0</p>
-<p>   goto :goto_0</p>
-<p>   :cond_5<br>    const-string v0, “shutdown”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_6</p>
-<p>   new-instance v0, Lcom/android/server/policy/MiuiGlobalActions$1$1;</p>
-<p>   const-string v1, “ShutdownThread”</p>
-<p>   invoke-direct {v0, p0, v1}, Lcom/android/server/policy/MiuiGlobalActions$1$1;-&gt;<init>(Lcom/android/server/policy/MiuiGlobalActions$1;Ljava/lang/String;)V</init></p>
-<p>   invoke-virtual {v0}, Lcom/android/server/policy/MiuiGlobalActions$1$1;-&gt;start()V</p>
-<p>   goto :goto_0</p>
-<p>   :cond_6<br>    const-string v0, “dismiss”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_0</p>
-<p>   iget-object v0, p0, Lcom/android/server/policy/MiuiGlobalActions$1;-&gt;this$0:Lcom/android/server/policy/MiuiGlobalActions;</p>
-<p>   invoke-static {v0}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-get0(Lcom/android/server/policy/MiuiGlobalActions;)Landroid/os/Handler;</p>
-<p>   move-result-object v0</p>
-<p>   invoke-virtual {v0, v1}, Landroid/os/Handler;-&gt;sendEmptyMessage(I)Z</p>
-<p>   goto :goto_0</p>
-<p>   .end method</p>
+<p>.method static compareSignatures([Landroid/content/pm/Signature;[Landroid/content/pm/Signature;)I<br>   .registers 9</p>
+<p>   const/4 v0, 0x0</p>
+<p>   return v0<br>.end method</p>
 </blockquote>
-<ol start="5">
-<li>将本文提供的powermenu文件复制到”media/theme/default”下替换原文件，并设置权限为rw-r-r<br>powermenu下载：<a href="https://pan.baidu.com/s/1Onf2AZvYhNOG2yIei_T_wg" target="_blank" rel="noopener">百度网盘</a> 密码: esyy</li>
-<li>结束，重启生效。</li>
+<p>保存并退出</p>
+<ol start="3">
+<li><p>打开smali\com\miui\server\SecurityManagerService.smali<br>将会找到：</p>
+<p> .method private checkSystemSelfProtection(Z)V<br> .locals 3<br> .param p1, “onlyCore”    # Z</p>
+<p> .prologue<br> .line 226<br> iget-object v1, p0, Lcom/miui/server/SecurityManagerService;-&gt;mContext:Landroid/content/Context;</p>
+<p> invoke-virtual {v1}, Landroid/content/Context;-&gt;getPackageManager()Landroid/content/pm/PackageManager;</p>
+<p> move-result-object v0</p>
+<p> .line 227<br> .local v0, “pm”:Landroid/content/pm/PackageManager;<br> sget-boolean v1, Lmiui/os/Build;-&gt;IS_TABLET:Z</p>
+<p> if-nez v1, :cond_2</p>
+<p> if-nez p1, :cond_2</p>
+<p> .line 229<br> const-string v1, “android”</p>
+<p> const-string v2, “com.android.updater”</p>
+<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
+<p> move-result v1</p>
+<p> if-eqz v1, :cond_0</p>
+<p> .line 230<br> new-instance v1, Ljava/lang/RuntimeException;</p>
+<p> const-string v2, “System error : cannot find system app : com.android.updater”</p>
+<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
+<p> throw v1</p>
+<p> .line 234<br> :cond_0<br> const-string v1, “android”</p>
+<p> const-string v2, “com.miui.securitycenter”</p>
+<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
+<p> move-result v1</p>
+<p> if-eqz v1, :cond_1</p>
+<p> .line 235<br> new-instance v1, Ljava/lang/RuntimeException;</p>
+<p> const-string v2, “System error : cannot find system app : com.miui.securitycenter”</p>
+<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
+<p> throw v1</p>
+<p> .line 238<br> :cond_1<br> sget-boolean v1, Lmiui/os/Build;-&gt;IS_INTERNATIONAL_BUILD:Z</p>
+<p> if-nez v1, :cond_2</p>
+<p> sget-boolean v1, Lmiui/os/Build;-&gt;IS_CM_CUSTOMIZATION:Z</p>
+<p> if-nez v1, :cond_2</p>
+<p> sget-boolean v1, Lmiui/os/Build;-&gt;IS_CM_CUSTOMIZATION_TEST:Z</p>
+<p> if-nez v1, :cond_2</p>
+<p> .line 241<br> const-string v1, “android”</p>
+<p> const-string v2, “com.xiaomi.market”</p>
+<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
+<p> move-result v1</p>
+<p> if-eqz v1, :cond_2</p>
+<p> .line 242<br> new-instance v1, Ljava/lang/RuntimeException;</p>
+<p> const-string v2, “System error : cannot find system app : com.xiaomi.market”</p>
+<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
+<p> throw v1</p>
+<p> .line 246<br> :cond_2<br> return-void<br> .end method<br>将以下内容删除：</p>
+<p> .line 241<br> const-string v1, “android”</p>
+<p> const-string v2, “com.xiaomi.market”</p>
+<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
+<p> move-result v1</p>
+<p> if-eqz v1, :cond_2</p>
+<p> .line 242<br> new-instance v1, Ljava/lang/RuntimeException;</p>
+<p> const-string v2, “System error : cannot find system app : com.xiaomi.market”</p>
+<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
+<p> throw v1</p>
+</li>
+<li>回编译services.jar，并替换原文件。再删除MIUI商店就不会卡开机动画了。</li>
 </ol>
 
       
@@ -399,13 +532,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/">MIUI9 安卓7.1 添加高级电源菜单</a></p>
+        <p><span>本文标题:</span><a  href="/2018/08/02/MIUI-破解卡米教程/">MIUI 破解卡米教程</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 九面相柳 的个人博客">九面相柳</a></p>
-        <p><span>发布时间:</span>2018年08月01日 - 00时02分</p>
-        <p><span>最后更新:</span>2018年08月01日 - 10时48分</p>
+        <p><span>发布时间:</span>2018年08月02日 - 12时08分</p>
+        <p><span>最后更新:</span>2018年08月02日 - 12时19分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" title="MIUI9 安卓7.1 添加高级电源菜单">https://jmxl.github.io/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/　　作者: 九面相柳" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/02/MIUI-破解卡米教程/" title="MIUI 破解卡米教程">https://jmxl.github.io/2018/08/02/MIUI-破解卡米教程/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/02/MIUI-破解卡米教程/　　作者: 九面相柳" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -416,18 +549,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/08/02/MIUI-破解卡米教程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          MIUI 破解卡米教程
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2018/07/31/【补丁】酷派S1-乐视Pro3-类原生8-1改机型补丁/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【补丁】酷派S1/乐视Pro3/乐视Max2 类原生8.1改机型补丁</div>
+    <a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MIUI9 安卓7.1 添加高级电源菜单</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -512,13 +636,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/08/02/MIUI-破解卡米教程/" title="上一篇: MIUI 破解卡米教程">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/07/31/【补丁】酷派S1-乐视Pro3-类原生8-1改机型补丁/" title="下一篇: 【补丁】酷派S1/乐视Pro3/乐视Max2 类原生8.1改机型补丁">
+            <a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" title="下一篇: MIUI9 安卓7.1 添加高级电源菜单">
                 <i class="fa fa-angle-right"></i>
             </a>
         
