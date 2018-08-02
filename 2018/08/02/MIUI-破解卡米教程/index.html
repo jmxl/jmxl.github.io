@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="九面相柳的博客">
 <meta property="og:description" content="MIUI 破解卡米教程：解决MIUI删除内置应用商店会卡米的问题。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-02T04:19:58.752Z">
+<meta property="og:updated_time" content="2018-08-02T04:31:47.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MIUI 破解卡米教程">
 <meta name="twitter:description" content="MIUI 破解卡米教程：解决MIUI删除内置应用商店会卡米的问题。">
@@ -462,7 +462,8 @@ move v6, v8
 goto :goto_0
 
 .end method
-</code></pre><p>用以下内容替换：</p>
+</code></pre><label style="color:blue">用以下内容替换：</label>
+
 <blockquote>
 <p>.method static compareSignatures([Landroid/content/pm/Signature;[Landroid/content/pm/Signature;)I<br>   .registers 9</p>
 <p>   const/4 v0, 0x0</p>
@@ -470,58 +471,133 @@ goto :goto_0
 </blockquote>
 <p>保存并退出</p>
 <ol start="3">
-<li><p>打开smali\com\miui\server\SecurityManagerService.smali<br>将会找到：</p>
-<p> .method private checkSystemSelfProtection(Z)V<br> .locals 3<br> .param p1, “onlyCore”    # Z</p>
-<p> .prologue<br> .line 226<br> iget-object v1, p0, Lcom/miui/server/SecurityManagerService;-&gt;mContext:Landroid/content/Context;</p>
-<p> invoke-virtual {v1}, Landroid/content/Context;-&gt;getPackageManager()Landroid/content/pm/PackageManager;</p>
-<p> move-result-object v0</p>
-<p> .line 227<br> .local v0, “pm”:Landroid/content/pm/PackageManager;<br> sget-boolean v1, Lmiui/os/Build;-&gt;IS_TABLET:Z</p>
-<p> if-nez v1, :cond_2</p>
-<p> if-nez p1, :cond_2</p>
-<p> .line 229<br> const-string v1, “android”</p>
-<p> const-string v2, “com.android.updater”</p>
-<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
-<p> move-result v1</p>
-<p> if-eqz v1, :cond_0</p>
-<p> .line 230<br> new-instance v1, Ljava/lang/RuntimeException;</p>
-<p> const-string v2, “System error : cannot find system app : com.android.updater”</p>
-<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
-<p> throw v1</p>
-<p> .line 234<br> :cond_0<br> const-string v1, “android”</p>
-<p> const-string v2, “com.miui.securitycenter”</p>
-<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
-<p> move-result v1</p>
-<p> if-eqz v1, :cond_1</p>
-<p> .line 235<br> new-instance v1, Ljava/lang/RuntimeException;</p>
-<p> const-string v2, “System error : cannot find system app : com.miui.securitycenter”</p>
-<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
-<p> throw v1</p>
-<p> .line 238<br> :cond_1<br> sget-boolean v1, Lmiui/os/Build;-&gt;IS_INTERNATIONAL_BUILD:Z</p>
-<p> if-nez v1, :cond_2</p>
-<p> sget-boolean v1, Lmiui/os/Build;-&gt;IS_CM_CUSTOMIZATION:Z</p>
-<p> if-nez v1, :cond_2</p>
-<p> sget-boolean v1, Lmiui/os/Build;-&gt;IS_CM_CUSTOMIZATION_TEST:Z</p>
-<p> if-nez v1, :cond_2</p>
-<p> .line 241<br> const-string v1, “android”</p>
-<p> const-string v2, “com.xiaomi.market”</p>
-<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
-<p> move-result v1</p>
-<p> if-eqz v1, :cond_2</p>
-<p> .line 242<br> new-instance v1, Ljava/lang/RuntimeException;</p>
-<p> const-string v2, “System error : cannot find system app : com.xiaomi.market”</p>
-<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
-<p> throw v1</p>
-<p> .line 246<br> :cond_2<br> return-void<br> .end method<br>将以下内容删除：</p>
-<p> .line 241<br> const-string v1, “android”</p>
-<p> const-string v2, “com.xiaomi.market”</p>
-<p> invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I</p>
-<p> move-result v1</p>
-<p> if-eqz v1, :cond_2</p>
-<p> .line 242<br> new-instance v1, Ljava/lang/RuntimeException;</p>
-<p> const-string v2, “System error : cannot find system app : com.xiaomi.market”</p>
-<p> invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;<init>(Ljava/lang/String;)V</init></p>
-<p> throw v1</p>
+<li>打开smali\com\miui\server\SecurityManagerService.smali<br>搜索：<blockquote>
+<p> .method private checkSystemSelfProtection</p>
+</blockquote>
 </li>
+</ol>
+<p>将会找到：</p>
+<pre><code>.method private checkSystemSelfProtection(Z)V
+.locals 3
+.param p1, &quot;onlyCore&quot;    # Z
+
+.prologue
+.line 226
+iget-object v1, p0, Lcom/miui/server/SecurityManagerService;-&gt;mContext:Landroid/content/Context;
+
+invoke-virtual {v1}, Landroid/content/Context;-&gt;getPackageManager()Landroid/content/pm/PackageManager;
+
+move-result-object v0
+
+.line 227
+.local v0, &quot;pm&quot;:Landroid/content/pm/PackageManager;
+sget-boolean v1, Lmiui/os/Build;-&gt;IS_TABLET:Z
+
+if-nez v1, :cond_2
+
+if-nez p1, :cond_2
+
+.line 229
+const-string v1, &quot;android&quot;
+
+const-string v2, &quot;com.android.updater&quot;
+
+invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I
+
+move-result v1
+
+if-eqz v1, :cond_0
+
+.line 230
+new-instance v1, Ljava/lang/RuntimeException;
+
+const-string v2, &quot;System error : cannot find system app : com.android.updater&quot;
+
+invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;&lt;init&gt;(Ljava/lang/String;)V
+
+throw v1
+
+.line 234
+:cond_0
+const-string v1, &quot;android&quot;
+
+const-string v2, &quot;com.miui.securitycenter&quot;
+
+invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I
+
+move-result v1
+
+if-eqz v1, :cond_1
+
+.line 235
+new-instance v1, Ljava/lang/RuntimeException;
+
+const-string v2, &quot;System error : cannot find system app : com.miui.securitycenter&quot;
+
+invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;&lt;init&gt;(Ljava/lang/String;)V
+
+throw v1
+
+.line 238
+:cond_1
+sget-boolean v1, Lmiui/os/Build;-&gt;IS_INTERNATIONAL_BUILD:Z
+
+if-nez v1, :cond_2
+
+sget-boolean v1, Lmiui/os/Build;-&gt;IS_CM_CUSTOMIZATION:Z
+
+if-nez v1, :cond_2
+
+sget-boolean v1, Lmiui/os/Build;-&gt;IS_CM_CUSTOMIZATION_TEST:Z
+
+if-nez v1, :cond_2
+
+.line 241
+const-string v1, &quot;android&quot;
+
+const-string v2, &quot;com.xiaomi.market&quot;
+
+invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I
+
+move-result v1
+
+if-eqz v1, :cond_2
+
+.line 242
+new-instance v1, Ljava/lang/RuntimeException;
+
+const-string v2, &quot;System error : cannot find system app : com.xiaomi.market&quot;
+
+invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;&lt;init&gt;(Ljava/lang/String;)V
+
+throw v1
+
+.line 246
+:cond_2
+return-void
+.end method
+</code></pre><label style="color:blue">将以下内容删除：</label>
+
+<pre><code>.line 241
+const-string v1, &quot;android&quot;
+
+const-string v2, &quot;com.xiaomi.market&quot;
+
+invoke-virtual {v0, v1, v2}, Landroid/content/pm/PackageManager;-&gt;checkSignatures(Ljava/lang/String;Ljava/lang/String;)I
+
+move-result v1
+
+if-eqz v1, :cond_2
+
+.line 242
+new-instance v1, Ljava/lang/RuntimeException;
+
+const-string v2, &quot;System error : cannot find system app : com.xiaomi.market&quot;
+
+invoke-direct {v1, v2}, Ljava/lang/RuntimeException;-&gt;&lt;init&gt;(Ljava/lang/String;)V
+
+throw v1
+</code></pre><ol start="4">
 <li>回编译services.jar，并替换原文件。再删除MIUI商店就不会卡开机动画了。</li>
 </ol>
 
@@ -535,7 +611,7 @@ goto :goto_0
         <p><span>本文标题:</span><a  href="/2018/08/02/MIUI-破解卡米教程/">MIUI 破解卡米教程</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 九面相柳 的个人博客">九面相柳</a></p>
         <p><span>发布时间:</span>2018年08月02日 - 12时08分</p>
-        <p><span>最后更新:</span>2018年08月02日 - 12时19分</p>
+        <p><span>最后更新:</span>2018年08月02日 - 12时31分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/08/02/MIUI-破解卡米教程/" title="MIUI 破解卡米教程">https://jmxl.github.io/2018/08/02/MIUI-破解卡米教程/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/02/MIUI-破解卡米教程/　　作者: 九面相柳" title=""></span>
