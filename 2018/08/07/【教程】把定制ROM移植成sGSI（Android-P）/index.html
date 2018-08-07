@@ -7,20 +7,20 @@
   
   
   
-  <title>MIUI9 安卓7.1 添加高级电源菜单 | 九面相柳的博客</title>
+  <title>【教程】把定制ROM移植成sGSI（适用于Android P） | 九面相柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式">
-<meta name="keywords" content="MIUI,教程">
+  <meta name="description" content="【教程】把定制ROM移植成sGSI（适用于Android P）：参考此教程可把OEM定制的ROM制作成GSI镜像，可以在支持Project Treble 的设备上运行，仅适用于高通平台。">
+<meta name="keywords" content="教程,ROM移植">
 <meta property="og:type" content="article">
-<meta property="og:title" content="MIUI9 安卓7.1 添加高级电源菜单">
-<meta property="og:url" content="https://jmxl.github.io/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/index.html">
+<meta property="og:title" content="【教程】把定制ROM移植成sGSI（适用于Android P）">
+<meta property="og:url" content="https://jmxl.github.io/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/index.html">
 <meta property="og:site_name" content="九面相柳的博客">
-<meta property="og:description" content="MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式">
+<meta property="og:description" content="【教程】把定制ROM移植成sGSI（适用于Android P）：参考此教程可把OEM定制的ROM制作成GSI镜像，可以在支持Project Treble 的设备上运行，仅适用于高通平台。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-01T02:48:32.210Z">
+<meta property="og:updated_time" content="2018-08-07T11:03:18.447Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MIUI9 安卓7.1 添加高级电源菜单">
-<meta name="twitter:description" content="MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式">
+<meta name="twitter:title" content="【教程】把定制ROM移植成sGSI（适用于Android P）">
+<meta name="twitter:description" content="【教程】把定制ROM移植成sGSI（适用于Android P）：参考此教程可把OEM定制的ROM制作成GSI镜像，可以在支持Project Treble 的设备上运行，仅适用于高通平台。">
   
     <link rel="alternative" href="/atom.xml" title="九面相柳的博客" type="application/atom+xml">
   
@@ -250,11 +250,11 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap"><article id="post-MIUI9-安卓7-1-添加高级电源菜单" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-【教程】把定制ROM移植成sGSI（Android-P）" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" class="article-date">
-      <time datetime="2018-07-31T16:02:10.000Z" itemprop="datePublished">2018-08-01</time>
+      <a  href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/" class="article-date">
+      <time datetime="2018-08-07T10:18:03.000Z" itemprop="datePublished">2018-08-07</time>
 </a>
 
     </div>
@@ -268,7 +268,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      MIUI9 安卓7.1 添加高级电源菜单
+      【教程】把定制ROM移植成sGSI（适用于Android P）
     </h1>
   
 
@@ -284,7 +284,7 @@
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIUI/">MIUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROM移植/">ROM移植</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -294,102 +294,34 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p><strong> MIUI9 安卓7.1 添加高级电源菜单：为基于安卓7.1的MIUI9添加高级电源菜单，重启至Recovery模式和Fastboot模式 </strong> <excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
-<p><the rest="" of="" contents="" |="" 余下全文=""></the></p>
-<label style="color:gray">本文来自：<a href="http://en.miui.com/forum.php?mod=viewthread&amp;tid=478019&amp;extra=page%3D2" target="_blank" rel="noopener">MIUI论坛英文版</a>，翻译：九面相柳</label>
-
-<ol>
-<li>反编译 system/framework/services.jar</li>
-<li>打开 com\android\server\policy/MiuiGlobalActions$1.smali</li>
-<li><p>找到</p>
-<blockquote>
-<p>.method public onCommand(Ljava/lang/String;Ljava/lang/&gt; Double;Ljava/lang/String;)V<br>.<br>.end method</p>
-</blockquote>
-</li>
-<li><p>将其替换为</p>
-</li>
+        <p><strong> 【教程】把定制ROM移植成sGSI（适用于Android P）：参考此教程可把OEM定制的ROM制作成GSI镜像，可以在支持Project Treble 的设备上运行，仅适用于高通平台。</strong> <excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>本文来自<a href="[https://forum.xda-developers.com/project-treble/trebleenabled-device-development/reference-port-p-preview-images-semi-gsi-t3825572">xda论坛</a>，翻译：九面相柳<br>本文介绍了将定制ROM移植成semi-GSI的主要步骤，旨在介绍应该处理的关键文件，而非手把手教学的教程，也许参考本文仅仅能够制作出一个可启动的镜像，我不会保证真给你带来什么。</the></p>
+<h2 id="需要准备的东西有："><a href="#需要准备的东西有：" class="headerlink" title="需要准备的东西有："></a>需要准备的东西有：</h2><ol>
+<li>一台电脑和一部支持PT的手机（官方或土制均可）；</li>
+<li>P DP3 semi-GSI（目前大部分OEM厂商的安卓P(9.0)都是基于DP3的）；</li>
+<li>一个你想移植的高通平台的安卓P镜像；</li>
+<li>最好有最新版本的ROM移植工具（方便解包等操作）</li>
 </ol>
-<blockquote>
-<p> .method public onCommand(Ljava/lang/String;Ljava/lang/Double;Ljava/lang/String;)V<br>  .locals 5</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const-string/jumbo v0, “airplane”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_1</p>
-<p>   iget-object v0, p0, Lcom/android/server/policy/MiuiGlobalActions$1;-&gt;this$0:Lcom/android/server/policy/MiuiGlobalActions;</p>
-<p>   const/16 v1, 0x9</p>
-<p>   invoke-static {v0, v1}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap1(Lcom/android/server/policy/MiuiGlobalActions;I)V</p>
-<p>   :cond_0<br>    :goto_0<br>    return-void</p>
-<p>   :cond_1<br>    const-string/jumbo v0, “silent”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_2</p>
-<p>   iget-object v0, p0, Lcom/android/server/policy/MiuiGlobalActions$1;-&gt;this$0:Lcom/android/server/policy/MiuiGlobalActions;</p>
-<p>   const/4 v1, 0x5</p>
-<p>   invoke-static {v0, v1}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap1(Lcom/android/server/policy/MiuiGlobalActions;I)V</p>
-<p>   goto :goto_0</p>
-<p>   :cond_2<br>    const-string/jumbo v0, “reboot”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_3</p>
-<p>   :try_start_0<br>    invoke-static {}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap0()Landroid/os/IPowerManager;</p>
-<p>   move-result-object v0</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const/4 v2, 0x0</p>
-<p>   const/4 v3, 0x0</p>
-<p>   invoke-interface {v0, v1, v2, v3}, Landroid/os/IPowerManager;-&gt;reboot(ZLjava/lang/String;Z)V<br>    :try_end_0<br>    .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0</p>
-<p>   goto :goto_0</p>
-<p>   :catch_0<br>    move-exception v0</p>
-<p>   goto :goto_0</p>
-<p>   :cond_3<br>    const-string/jumbo v0, “recovery”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_4</p>
-<p>   :try_start_1<br>    invoke-static {}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap0()Landroid/os/IPowerManager;</p>
-<p>   move-result-object v0</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const-string v2, “recovery”</p>
-<p>   const/4 v3, 0x0</p>
-<p>   invoke-interface {v0, v1, v2, v3}, Landroid/os/IPowerManager;-&gt;reboot(ZLjava/lang/String;Z)V<br>    :try_end_1<br>    .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_1</p>
-<p>   goto :goto_0</p>
-<p>   :catch_1<br>    move-exception v0</p>
-<p>   goto :goto_0</p>
-<p>   :cond_4<br>    const-string/jumbo v0, “bootloader”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_5</p>
-<p>   :try_start_2<br>    invoke-static {}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-wrap0()Landroid/os/IPowerManager;</p>
-<p>   move-result-object v0</p>
-<p>   const/4 v1, 0x0</p>
-<p>   const-string v2, “bootloader”</p>
-<p>   const/4 v3, 0x0</p>
-<p>   invoke-interface {v0, v1, v2, v3}, Landroid/os/IPowerManager;-&gt;reboot(ZLjava/lang/String;Z)V<br>    :try_end_2<br>    .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_2</p>
-<p>   goto :goto_0</p>
-<p>   :catch_2<br>    move-exception v0</p>
-<p>   goto :goto_0</p>
-<p>   :cond_5<br>    const-string v0, “shutdown”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_6</p>
-<p>   new-instance v0, Lcom/android/server/policy/MiuiGlobalActions$1$1;</p>
-<p>   const-string v1, “ShutdownThread”</p>
-<p>   invoke-direct {v0, p0, v1}, Lcom/android/server/policy/MiuiGlobalActions$1$1;-&gt;<init>(Lcom/android/server/policy/MiuiGlobalActions$1;Ljava/lang/String;)V</init></p>
-<p>   invoke-virtual {v0}, Lcom/android/server/policy/MiuiGlobalActions$1$1;-&gt;start()V</p>
-<p>   goto :goto_0</p>
-<p>   :cond_6<br>    const-string v0, “dismiss”</p>
-<p>   invoke-virtual {v0, p1}, Ljava/lang/String;-&gt;equals(Ljava/lang/Object;)Z</p>
-<p>   move-result v0</p>
-<p>   if-eqz v0, :cond_0</p>
-<p>   iget-object v0, p0, Lcom/android/server/policy/MiuiGlobalActions$1;-&gt;this$0:Lcom/android/server/policy/MiuiGlobalActions;</p>
-<p>   invoke-static {v0}, Lcom/android/server/policy/MiuiGlobalActions;-&gt;-get0(Lcom/android/server/policy/MiuiGlobalActions;)Landroid/os/Handler;</p>
-<p>   move-result-object v0</p>
-<p>   invoke-virtual {v0, v1}, Landroid/os/Handler;-&gt;sendEmptyMessage(I)Z</p>
-<p>   goto :goto_0</p>
-<p>   .end method</p>
-</blockquote>
-<ol start="5">
-<li>将本文提供的powermenu文件复制到”media/theme/default”下替换原文件，并设置权限为rw-r-r<br>powermenu下载：<a href="https://pan.baidu.com/s/1Onf2AZvYhNOG2yIei_T_wg" target="_blank" rel="noopener">百度网盘</a> 密码: esyy</li>
-<li>结束，重启生效。</li>
+<p>似乎目前只有高通平台的手机有官方P预览版系统，我不确定麒麟和猎户座的手机是否也已经有了安卓P。<br>理论上，安卓P镜像可以在同一平台的不同芯片之间移植。</p>
+<h3 id="当然，搞机有风险，请你做好救砖的准备。"><a href="#当然，搞机有风险，请你做好救砖的准备。" class="headerlink" title="当然，搞机有风险，请你做好救砖的准备。"></a><label style="color:red">当然，搞机有风险，请你做好救砖的准备。</label></h3><h2 id="现在，咱们开始移植。"><a href="#现在，咱们开始移植。" class="headerlink" title="现在，咱们开始移植。"></a>现在，咱们开始移植。</h2><p>首先，解包安卓P的semi-GSI 镜像（以下称为底包）和你要移植的ROM。</p>
+<p>（下文中的“lib&amp;lib64”意思是你要替换的文件在lib和lib64下同时存在，请分别替换）</p>
+<ol>
+<li>将移植包的/system/lib&amp;lib64/libselinux.so替换成底包的；</li>
+<li>找到移植包/system/etc下以ld.config开头的txt文件，用底包的/system/etc/ld.configs.txt替换；</li>
+<li>删除 /system/etc/permissions/qti-permissions.jar</li>
+<li>修改/system/etc/prop.default 关闭adb安全设置并打开调试选项，以便于debug</li>
+<li>解包移移植包的vendor 镜像，找到OEM厂商在 manifest.xml中添加的服务项；manifest可能会在 /vendor 或者 /vendor/etc/vintf，挑出所有与你在manifest找到的服务项有关的hal，通常它们会位于：<br>/vendor/bin/hw<br>/vendor/etc/init<br>/vendor/lib&amp;lib64/<br>/vendor/lib&amp;lib64/hw<br>并找出一些其他与移植包有关的文件如framework, overlays等；</li>
+<li>然后把你移植好的system打包成img.</li>
+</ol>
+<p>刷入 8.1 的 vendor ， P semi-GSI boot 和 vendor 补丁.<br>刷入你移植好的system.img</p>
+<p>添加你在vendor分区找到的额外的文件，还需要修改你的手机的manifexts.xml并添加OEM相关的文件。</p>
+<p>可刷入FBE Disabler和permissiver来关闭FBE（文件加密）和seLinux。<br>格式化data，把adb keys推送到手机里以便于调试，重启。</p>
+<p>如果你足够幸运，就可以见到开机动画并开始调试了。<br>可以用adb命令抓取log.</p>
+<p>打开log文件搜索“died”，可以定位到bug的位置，剩下的就看你的经验了。</p>
+<h2 id="补充：一些常见问题的解决方案"><a href="#补充：一些常见问题的解决方案" class="headerlink" title="补充：一些常见问题的解决方案"></a>补充：一些常见问题的解决方案</h2><ol>
+<li>‘dumplicate permission : XXX’<br>解决方案：在 /system/etc/permissions 的文件中找到XXX ，删除报错的权限；</li>
+<li>‘fail to make lockscreen ready’<br>解决方案：将底包中的libpuresoftkeymasterdevice.so添加到你的系统中；</li>
+<li>进入系统后重启或黑屏（常见于骁龙845）<br>解决方案：替换以下文件：<br>/system/bin/surfaceflinger<br>/system/lib&amp;lib64/libsurfaceflinger.so and libtimestats_pronto.so</li>
 </ol>
 
       
@@ -399,13 +331,13 @@
   
     
     <div class="copyright">
-        <p><span>本文标题:</span><a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/">MIUI9 安卓7.1 添加高级电源菜单</a></p>
+        <p><span>本文标题:</span><a  href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/">【教程】把定制ROM移植成sGSI（适用于Android P）</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 九面相柳 的个人博客">九面相柳</a></p>
-        <p><span>发布时间:</span>2018年08月01日 - 00时02分</p>
-        <p><span>最后更新:</span>2018年08月01日 - 10时48分</p>
+        <p><span>发布时间:</span>2018年08月07日 - 18时18分</p>
+        <p><span>最后更新:</span>2018年08月07日 - 19时03分</p>
         <p>
-            <span>原始链接:</span><a class="post-url" href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" title="MIUI9 安卓7.1 添加高级电源菜单">https://jmxl.github.io/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/</a>
-            <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/　　作者: 九面相柳" title=""></span>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/" title="【教程】把定制ROM移植成sGSI（适用于Android P）">https://jmxl.github.io/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/　　作者: 九面相柳" title=""></span>
         </p>
         <p>
             <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
@@ -416,18 +348,9 @@
 
 <nav id="article-nav">
   
-    <a  href="/2018/08/02/MIUI-破解卡米教程/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          MIUI 破解卡米教程
-        
-      </div>
-    </a>
   
-  
-    <a  href="/2018/07/31/【补丁】酷派S1-乐视Pro3-类原生8-1改机型补丁/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">【补丁】酷派S1/乐视Pro3/乐视Max2 类原生8.1改机型补丁</div>
+    <a  href="/2018/08/02/MIUI-破解卡米教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MIUI 破解卡米教程</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -439,7 +362,7 @@
 
     <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需要准备的东西有："><span class="toc-number">1.</span> <span class="toc-text">需要准备的东西有：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#当然，搞机有风险，请你做好救砖的准备。"><span class="toc-number">1.1.</span> <span class="toc-text">当然，搞机有风险，请你做好救砖的准备。</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#现在，咱们开始移植。"><span class="toc-number">2.</span> <span class="toc-text">现在，咱们开始移植。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#补充：一些常见问题的解决方案"><span class="toc-number">3.</span> <span class="toc-text">补充：一些常见问题的解决方案</span></a></li></ol>
 </div>
 <style>
     .left-col .switch-btn {
@@ -512,13 +435,11 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a  href="/2018/08/02/MIUI-破解卡米教程/" title="上一篇: MIUI 破解卡米教程">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
         
-            <a  href="/2018/07/31/【补丁】酷派S1-乐视Pro3-类原生8-1改机型补丁/" title="下一篇: 【补丁】酷派S1/乐视Pro3/乐视Max2 类原生8.1改机型补丁">
+            <a  href="/2018/08/02/MIUI-破解卡米教程/" title="下一篇: MIUI 破解卡米教程">
                 <i class="fa fa-angle-right"></i>
             </a>
         
