@@ -4,20 +4,23 @@
   <meta charset="utf-8">
   <meta name="baidu-site-verification" content="L6Lm9d5Crl"/>
   
-   
-    <meta name="keywords" content="教程" />
   
   
   
-  <title>Tag: 教程 | 九面相柳的博客</title>
+  <title>修改类原生ROM源码消除wifi叹号 | 九面相柳的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="九面相柳的博客">
-<meta property="og:url" content="https://jmxl.github.io/tags/教程/index.html">
+  <meta name="description" content="修改类原生ROM源码消除wifi叹号：修改源码解决类原生ROM提示不能联网及WiFi叹号问题">
+<meta name="keywords" content="教程,ROM编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="修改类原生ROM源码消除wifi叹号">
+<meta property="og:url" content="https://jmxl.github.io/2018/08/18/修改类原生ROM源码消除wifi叹号/index.html">
 <meta property="og:site_name" content="九面相柳的博客">
+<meta property="og:description" content="修改类原生ROM源码消除wifi叹号：修改源码解决类原生ROM提示不能联网及WiFi叹号问题">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-18T14:49:33.335Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="九面相柳的博客">
+<meta name="twitter:title" content="修改类原生ROM源码消除wifi叹号">
+<meta name="twitter:description" content="修改类原生ROM源码消除wifi叹号：修改源码解决类原生ROM提示不能联网及WiFi叹号问题">
   
     <link rel="alternative" href="/atom.xml" title="九面相柳的博客" type="application/atom+xml">
   
@@ -42,9 +45,9 @@
           fancybox: true,
           animate: true,
           isHome: false,
-          isPost: false,
+          isPost: true,
           isArchive: false,
-          isTag: true,
+          isTag: false,
           isCategory: false,
           open_in_new: false
       }
@@ -247,171 +250,215 @@
         </header>
     </div>
 </nav>
-      <div class="body-wrap">
+      <div class="body-wrap"><article id="post-修改类原生ROM源码消除wifi叹号" class="article article-type-post" itemscope itemprop="blogPost">
   
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a  href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a  href="/2018/08/18/修改类原生ROM源码消除wifi叹号/" class="archive-article-date">
-      <time datetime="2018-08-18T14:37:02.000Z" itemprop="datePublished">08-18</time>
+    <div class="article-meta">
+      <a  href="/2018/08/18/修改类原生ROM源码消除wifi叹号/" class="article-date">
+      <time datetime="2018-08-18T14:37:02.000Z" itemprop="datePublished">2018-08-18</time>
 </a>
 
-        </div>
-         
+    </div>
   
-    <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2018/08/18/修改类原生ROM源码消除wifi叹号/">修改类原生ROM源码消除wifi叹号</a>
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      修改类原生ROM源码消除wifi叹号
     </h1>
   
 
 
-        <div class="article-info info-on-archive">
-          
+      </header>
+      
+      <div class="article-info article-info-post">
+        
     <div class="article-category tagcloud">
     <a class="article-category-link" href="/categories/教程分享/">教程分享</a>
     </div>
 
 
-          
+        
     <div class="article-tag tagcloud">
         <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROM编译/">ROM编译</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
     </div>
 
-        </div>
         <div class="clearfix"></div>
-    </header>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><strong> 修改类原生ROM源码消除wifi叹号：修改源码解决类原生ROM提示不能联网及WiFi叹号问题</strong> <excerpt in="" index="" |="" 首页摘要=""><br><a id="more"></a></excerpt></p>
+<p><the rest="" of="" contents="" |="" 余下全文=""><br>简单说下提示无法连接网络的原因：谷歌原生安卓系统当连接到移动数据网络或者WIFI网络的时候，其NetworkMonitor模块会向特定的服务器发起一个请求并利用收到的响应进行网络状态判断。在国内，由于谷歌的服务器被屏蔽，所以导致没有返回值，这个时候谷歌安卓系统就会在信号或者wifi上打一个感叹号。</the></p>
+<p>知道了原因，解决起来也就容易了，我们只要修改这个服务器就可以了。国内有很多自建的204服务器，这里我使用了MIUI的204服务器，比较稳定。当然，能力强的也可以自建204服务器。</p>
+<p>源码位置：frameworks/base/services/core/java/com/android/server/connectivity/NetworkMonitor.java</p>
+<p>原代码：</p>
+<blockquote>
+<p>   private static final String DEFAULT_HTTPS_URL     = “<a href="https://www.google.com/generate_204&quot;" target="_blank" rel="noopener">https://www.google.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_HTTP_URL      =<br>            “<a href="http://connectivitycheck.gstatic.com/generate_204&quot;" target="_blank" rel="noopener">http://connectivitycheck.gstatic.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_FALLBACK_URL  = “<a href="http://www.google.com/gen_204&quot;" target="_blank" rel="noopener">http://www.google.com/gen_204&quot;</a>;<br>    private static final String DEFAULT_OTHER_FALLBACK_URLS =<br>            “<a href="http://play.googleapis.com/generate_204&quot;" target="_blank" rel="noopener">http://play.googleapis.com/generate_204&quot;</a>;</p>
+</blockquote>
+<p>修改为：</p>
+<blockquote>
+<p>   private static final String DEFAULT_HTTPS_URL     = “<a href="https://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">https://connect.rom.miui.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_HTTP_URL      =<br>            “<a href="http://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">http://connect.rom.miui.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_FALLBACK_URL  = “<a href="http://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">http://connect.rom.miui.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_OTHER_FALLBACK_URLS =<br>            “<a href="http://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">http://connect.rom.miui.com/generate_204&quot;</a>;</p>
+</blockquote>
+<p>重新编译，解决。</p>
+<p>安卓8.1下测试通过。</p>
+
+      
+    </div>
+    
   </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a  href="/2018/08/18/修改类原生ROM源码消除wifi叹号/">修改类原生ROM源码消除wifi叹号</a></p>
+        <p><span>文章作者:</span><a  href="/" title="访问 九面相柳 的个人博客">九面相柳</a></p>
+        <p><span>发布时间:</span>2018年08月18日 - 22时37分</p>
+        <p><span>最后更新:</span>2018年08月18日 - 22时49分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2018/08/18/修改类原生ROM源码消除wifi叹号/" title="修改类原生ROM源码消除wifi叹号">https://jmxl.github.io/2018/08/18/修改类原生ROM源码消除wifi叹号/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/18/修改类原生ROM源码消除wifi叹号/　　作者: 九面相柳" title=""></span>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+  
+    <a  href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">【教程】把定制ROM移植成sGSI（适用于Android P）</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+
+  
 </article>
-  
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
     
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a  href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/" class="archive-article-date">
-      <time datetime="2018-08-07T10:18:03.000Z" itemprop="datePublished">08-07</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/">【教程】把定制ROM移植成sGSI（适用于Android P）</a>
-    </h1>
-  
+        <section class="changyan" id="comments">
+  <!--<div id="uyan_frame"></div>-->
+  <div id="SOHUCS"></div>
+  <script charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/changyan.js"></script>
+  <script type="text/javascript">
+    window.changyan.api.config({
+      appid: 'xxxx',
+      conf: 'xxxxxxxxx'
+    });
+  </script>
+</section>
+    
 
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/教程分享/">教程分享</a>
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a  href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a  href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/" title="下一篇: 【教程】把定制ROM移植成sGSI（适用于Android P）">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
     </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROM移植/">ROM移植</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/08/18/修改类原生ROM源码消除wifi叹号/">修改类原生ROM源码消除wifi叹号</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/07/【教程】把定制ROM移植成sGSI（Android-P）/">【教程】把定制ROM移植成sGSI（适用于Android P）</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/02/MIUI-破解卡米教程/">MIUI 破解卡米教程</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/">MIUI9 安卓7.1 添加高级电源菜单</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/07/31/【补丁】酷派S1-乐视Pro3-类原生8-1改机型补丁/">【补丁】酷派S1/乐视Pro3/乐视Max2 类原生8.1改机型补丁</a></li></ul>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a  href="/2018/08/02/MIUI-破解卡米教程/" class="archive-article-date">
-      <time datetime="2018-08-02T04:08:07.000Z" itemprop="datePublished">08-02</time>
-</a>
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
 
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2018/08/02/MIUI-破解卡米教程/">MIUI 破解卡米教程</a>
-    </h1>
-  
-
-
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/教程分享/">教程分享</a>
-    </div>
+    <script>
+        $(".post-list").addClass("toc-article");
+        // $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#toc, .switch-btn, .switch-area").toggle();
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+                $(".switch-btn, .switch-area").fadeToggle(300);
+            }
+        })
+    </script>
 
 
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIUI/">MIUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROM移植/">ROM移植</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-          <div class="article-meta">
-              <a  href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/" class="archive-article-date">
-      <time datetime="2018-07-31T16:02:10.000Z" itemprop="datePublished">08-01</time>
-</a>
-
-        </div>
-         
-  
-    <h1 itemprop="name">
-      <a  class="archive-article-title" href="/2018/08/01/MIUI9-安卓7-1-添加高级电源菜单/">MIUI9 安卓7.1 添加高级电源菜单</a>
-    </h1>
-  
 
 
-        <div class="article-info info-on-archive">
-          
-    <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/教程分享/">教程分享</a>
-    </div>
-
-
-          
-    <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MIUI/">MIUI</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ROM移植/">ROM移植</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/教程/">教程</a></li></ul>
-    </div>
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-
+    <script>
+        
+    </script>
 
 </div>
       <footer id="footer">
@@ -503,18 +550,6 @@ ga('send', 'pageview');
         };
     })
 </script>
-
-    <button class="hide-labels">TAG 开关</button>
-    
-<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
-
-    <script>
-        $(document).ready(function() {
-            $("button").click(function() {
-                $(".article-info").toggle(200);
-            });
-        });
-    </script>
 
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
 </script>
