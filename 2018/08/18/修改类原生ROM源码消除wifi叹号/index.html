@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="九面相柳的博客">
 <meta property="og:description" content="修改类原生ROM源码消除wifi叹号：修改源码解决类原生ROM提示不能联网及WiFi叹号问题">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-18T14:49:33.335Z">
+<meta property="og:updated_time" content="2018-08-18T14:54:25.319Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="修改类原生ROM源码消除wifi叹号">
 <meta name="twitter:description" content="修改类原生ROM源码消除wifi叹号：修改源码解决类原生ROM提示不能联网及WiFi叹号问题">
@@ -299,13 +299,23 @@
 <p>知道了原因，解决起来也就容易了，我们只要修改这个服务器就可以了。国内有很多自建的204服务器，这里我使用了MIUI的204服务器，比较稳定。当然，能力强的也可以自建204服务器。</p>
 <p>源码位置：frameworks/base/services/core/java/com/android/server/connectivity/NetworkMonitor.java</p>
 <p>原代码：</p>
-<blockquote>
-<p>   private static final String DEFAULT_HTTPS_URL     = “<a href="https://www.google.com/generate_204&quot;" target="_blank" rel="noopener">https://www.google.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_HTTP_URL      =<br>            “<a href="http://connectivitycheck.gstatic.com/generate_204&quot;" target="_blank" rel="noopener">http://connectivitycheck.gstatic.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_FALLBACK_URL  = “<a href="http://www.google.com/gen_204&quot;" target="_blank" rel="noopener">http://www.google.com/gen_204&quot;</a>;<br>    private static final String DEFAULT_OTHER_FALLBACK_URLS =<br>            “<a href="http://play.googleapis.com/generate_204&quot;" target="_blank" rel="noopener">http://play.googleapis.com/generate_204&quot;</a>;</p>
-</blockquote>
+<pre><code>    private static final String DEFAULT_HTTPS_URL     = "https://www.google.com/generate_204";
+    private static final String DEFAULT_HTTP_URL      =
+            "http://connectivitycheck.gstatic.com/generate_204";
+    private static final String DEFAULT_FALLBACK_URL  = "http://www.google.com/gen_204";
+    private static final String DEFAULT_OTHER_FALLBACK_URLS =
+            "http://play.googleapis.com/generate_204";
+</code></pre>
+
 <p>修改为：</p>
-<blockquote>
-<p>   private static final String DEFAULT_HTTPS_URL     = “<a href="https://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">https://connect.rom.miui.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_HTTP_URL      =<br>            “<a href="http://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">http://connect.rom.miui.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_FALLBACK_URL  = “<a href="http://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">http://connect.rom.miui.com/generate_204&quot;</a>;<br>    private static final String DEFAULT_OTHER_FALLBACK_URLS =<br>            “<a href="http://connect.rom.miui.com/generate_204&quot;" target="_blank" rel="noopener">http://connect.rom.miui.com/generate_204&quot;</a>;</p>
-</blockquote>
+<pre><code>    private static final String DEFAULT_HTTPS_URL     = "https://connect.rom.miui.com/generate_204";
+    private static final String DEFAULT_HTTP_URL      =
+            "http://connect.rom.miui.com/generate_204";
+    private static final String DEFAULT_FALLBACK_URL  = "http://connect.rom.miui.com/generate_204";
+    private static final String DEFAULT_OTHER_FALLBACK_URLS =
+            "http://connect.rom.miui.com/generate_204";
+</code></pre>
+
 <p>重新编译，解决。</p>
 <p>安卓8.1下测试通过。</p>
 
@@ -319,7 +329,7 @@
         <p><span>本文标题:</span><a  href="/2018/08/18/修改类原生ROM源码消除wifi叹号/">修改类原生ROM源码消除wifi叹号</a></p>
         <p><span>文章作者:</span><a  href="/" title="访问 九面相柳 的个人博客">九面相柳</a></p>
         <p><span>发布时间:</span>2018年08月18日 - 22时37分</p>
-        <p><span>最后更新:</span>2018年08月18日 - 22时49分</p>
+        <p><span>最后更新:</span>2018年08月18日 - 22时54分</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2018/08/18/修改类原生ROM源码消除wifi叹号/" title="修改类原生ROM源码消除wifi叹号">https://jmxl.github.io/2018/08/18/修改类原生ROM源码消除wifi叹号/</a>
             <span class="copy-path" data-clipboard-text="原文: https://jmxl.github.io/2018/08/18/修改类原生ROM源码消除wifi叹号/　　作者: 九面相柳" title=""></span>
